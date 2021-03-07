@@ -1,8 +1,19 @@
 {
-  "name": "project_name",
+  "name": "bo-api-starter-ts",
   "version": "0.0.1",
+  "description": "블록오디세이에서 사용하는 api starter입니다.",
+  "keywords": [
+    "blockodyssey"
+  ],
+  "main": "./src/index.ts",
   "scripts": {
     "start": "tsc && nodemon dist"
+  },
+  "author": "blockodyssey",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BlockOdyssey/bo-api-starter-ts.git"
   },
   "dependencies": {
     "express": "^4.17.1"
