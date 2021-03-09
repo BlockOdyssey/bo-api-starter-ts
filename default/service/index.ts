@@ -1,4 +1,4 @@
-import findUser from "./users/findUser";
+const { findUser } = require("./users/findUser");
 
 const services = {
   users: {
@@ -6,4 +6,4 @@ const services = {
   },
 };
 
-export default services;
+module.exports = services;

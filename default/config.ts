@@ -24,6 +24,7 @@ const {
   MYSQL_PORT,
   MYSQL_DATABASE,
 } = process.env;
+
 //환경
 const isDev: boolean = NODE_ENV === "development";
 const isProd: boolean = NODE_ENV === "production";
@@ -60,7 +61,7 @@ const query = (sql: string, values?: any): Promise<unknown> =>
     });
   });
 
-export default {
+module.exports = {
   s3,
   s3_bucket,
   s3_host,

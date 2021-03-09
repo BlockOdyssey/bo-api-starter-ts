@@ -1,9 +1,9 @@
 import * as express from "express";
-import uploadFile from "../../middleware/uploadFile";
+const uploadFile = require("../../middleware/uploadFile");
 const router = express.Router();
 
 router.post(
-  "/upload",
+  "/",
   uploadFile.single("file"),
   (req: express.Request, res: express.Response) => {
     res.status(201).send({
@@ -11,3 +11,5 @@ router.post(
     });
   }
 );
+
+module.exports = router;

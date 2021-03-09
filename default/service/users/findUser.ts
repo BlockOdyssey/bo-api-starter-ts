@@ -1,11 +1,10 @@
-import * as users from "../../query/users";
-const find = users.default.find;
+const { find } = require("../../query/users");
 
 interface user {
   email: string;
 }
 
-const findUser = async (obj: user) => {
+exports.findUser = async (obj: user) => {
   console.log("service findUser :: ", obj);
 
   // 로직 작성은 여기서
@@ -18,5 +17,3 @@ const findUser = async (obj: user) => {
 
   return user;
 };
-
-export default findUser;

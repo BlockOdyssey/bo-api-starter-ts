@@ -1,8 +1,6 @@
-import * as config from "../config";
+const { s3, s3_bucket } = require("../config");
 import * as multer from "multer";
 import * as multerS3 from "multer-s3";
-const s3 = config.default.s3;
-const s3_bucket = config.default.s3_bucket;
 
 const uploadFile = multer({
   storage: multerS3({
@@ -17,4 +15,4 @@ const uploadFile = multer({
   }),
 });
 
-export default uploadFile;
+module.exports = uploadFile;

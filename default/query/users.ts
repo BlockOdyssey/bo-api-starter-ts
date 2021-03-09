@@ -1,5 +1,4 @@
-import * as config from "../config";
-const query = config.default.query;
+const { query } = require("../config");
 
 const TABLE_NAME: string = "TB_UI_USER";
 
@@ -7,7 +6,7 @@ interface user {
   email: string;
 }
 
-const find = (obj: user) => {
+exports.find = (obj: user) => {
   let sql = `
         SELECT
             *
@@ -20,8 +19,4 @@ const find = (obj: user) => {
   console.log(sql);
 
   return query(sql);
-};
-
-export default {
-  find,
 };

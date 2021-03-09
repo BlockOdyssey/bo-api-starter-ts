@@ -1,7 +1,6 @@
 import * as express from "express";
-import services from "../../service/index";
+const { users } = require("../../service/index");
 const router = express.Router();
-const users = services.users;
 
 router.get("/", async (req: express.Request, res: express.Response) => {
   const email = req.query.email as string;
