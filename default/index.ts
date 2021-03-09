@@ -1,5 +1,6 @@
 import * as express from "express";
 const app = express();
+const { PORT } = process.env;
 
 import * as webRoutes from "./routes/web";
 import * as appRoutes from "./routes/app";
@@ -23,6 +24,6 @@ app.get("/", (req: express.Request, res: express.Response) => {
   res.send("Hello World!");
 });
 
-app.listen(4000, () => {
-  console.log("Example app listening on port 4000!");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}!`);
 });
