@@ -25,8 +25,8 @@ const {
   MYSQL_DATABASE,
 } = process.env;
 //환경
-const isDev: boolean = NODE_ENV == "development";
-const isProd: boolean = NODE_ENV == "production";
+const isDev: boolean = NODE_ENV === "development";
+const isProd: boolean = NODE_ENV === "production";
 const port: string = PORT;
 const tlsPort: string = TLSPORT;
 const origin: string = ORIGIN;
@@ -37,6 +37,7 @@ const s3_bucket: string = S3_BUCKET;
 aws.config.update({
   accessKeyId: S3_ACCESSKEYID,
   secretAccessKey: S3_SECRETACCESSKEY,
+  region: "ap-northeast-2",
 });
 const s3: aws.S3 = new aws.S3();
 
@@ -51,7 +52,7 @@ const connection: Connection = mysql.createConnection({
 
 connection.connect();
 
-const query = (sql: string, values: any): Promise<unknown> =>
+const query = (sql: string, values?: any): Promise<unknown> =>
   new Promise((resolve, reject) => {
     console.log(sql);
     connection.query(sql, values, (err: mysql.MysqlError, rows: any) => {
