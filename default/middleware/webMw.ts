@@ -1,7 +1,7 @@
 import * as express from "express";
 
 // middle-ware settings
-exports.webMw = (
+const webMw = (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -20,3 +20,5 @@ exports.webMw = (
 
   next();
 };
+
+module.exports = webMw;
