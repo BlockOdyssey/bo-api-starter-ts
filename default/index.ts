@@ -5,8 +5,8 @@ const { port = 3000 } = config;
 
 const webRoutes = require("./routes/web");
 const appRoutes = require("./routes/app");
-const webMw = require("./middleware/webMw");
-const appMw = require("./middleware/appMw");
+const webMw = require("./middleware/web");
+const appMw = require("./middleware/app");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

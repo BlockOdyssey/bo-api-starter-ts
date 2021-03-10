@@ -1,4 +1,4 @@
-const { s3, s3_bucket } = require("../config");
+const { s3, s3_bucket } = require("../../config");
 import * as multer from "multer";
 import * as multerS3 from "multer-s3";
 
