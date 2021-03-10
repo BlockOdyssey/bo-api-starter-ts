@@ -23,6 +23,7 @@ const {
   MYSQL_PASSPORT,
   MYSQL_PORT,
   MYSQL_DATABASE,
+  JWT_SECRET,
 } = process.env;
 
 //환경
@@ -31,6 +32,7 @@ const isProd: boolean = NODE_ENV === "production";
 const port: string = PORT;
 const tlsPort: string = TLSPORT;
 const origin: string = ORIGIN;
+const jwtSecret: string = JWT_SECRET;
 
 //aws
 const s3_host: string = S3_HOST;
@@ -84,4 +86,5 @@ module.exports = {
   connection,
   query,
   origin,
+  jwtSecret,
 };
