@@ -51,13 +51,25 @@ const connection: Connection = mysql.createConnection({
   database: MYSQL_DATABASE,
 });
 
-connection.connect();
+connection.connect((err: mysql.MysqlError) => {
+  if (err) {
+    console.log(`Fail to connect MySQL Database: ${err.code}`);
+    process.exit(0);
+  } else {
+    console.log("MySQL database connection success");
+  }
+});
 
 const query = (sql: string, values?: any): Promise<unknown> =>
   new Promise((resolve, reject) => {
     console.log(sql);
     connection.query(sql, values, (err: mysql.MysqlError, rows: any) => {
-      err ? reject(err) : resolve(rows);
+      if (err) {
+        console.log(`Fail to query: ${err.code}`);
+        reject(err);
+      } else {
+        resolve(rows);
+      }
     });
   });
 
