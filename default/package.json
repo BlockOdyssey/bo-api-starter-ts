@@ -2,7 +2,7 @@
   "name": "project_name",
   "version": "0.0.1",
   "scripts": {
-    "start": "tsc && node dist"
+    "start": "nodemon --watch '**/*.ts' --ignore '**/*.spec.ts' --exec 'ts-node' index.ts"
   },
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.0",
