@@ -105,7 +105,7 @@
 
 ### HTTP Status Codes
 
-#### 200 : 데이터 조회 성공 (GET)
+#### 200 OK : 데이터 조회 성공 (GET)
 
 <pre>
   <code>
@@ -113,7 +113,7 @@
   </code>
 </pre>
 
-#### 201 : 데이터 생성, 수정, 삭제 성공 (POST, PUT, DELETE)
+#### 201 Created : 데이터 생성, 수정, 삭제 성공 (POST, PUT, DELETE)
 
 <pre>
   <code>
@@ -121,7 +121,7 @@
   </code>
 </pre>
 
-#### 400 : 잘못된 요청일 경우
+#### 400 Bad Request : 잘못된 요청일 경우
 
 <pre>
   <code>
@@ -129,7 +129,7 @@
   </code>
 </pre>
 
-#### 401 : 인증이 필요하거나 권한이 없는 경우
+#### 401 Unauthorized : 인증이 필요하거나 권한이 없는 경우
 
 <pre>
   <code>
@@ -137,7 +137,15 @@
   </code>
 </pre>
 
-#### 409 : DB에 데이터가 이미 존재하는 경우 (데이터 중복)
+#### 404 Not Found : 요청한 데이터를 찾을 수 없는 경우
+
+<pre>
+  <code>
+    res.status(404).send({ result: "fail", message: "요청한 데이터가 존재하지 않습니다." });
+  </code>
+</pre>
+
+#### 409 Conflict : DB에 데이터가 이미 존재하는 경우 (데이터 중복)
 
 <pre>
   <code>
@@ -145,7 +153,7 @@
   </code>
 </pre>
 
-#### 500 : 내부 서버 에러
+#### 500 Internal Server Error : 내부 서버 에러
 
 <pre>
   <code>
