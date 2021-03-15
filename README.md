@@ -169,27 +169,27 @@
 1. 동사보다는 명사를, 대문자보다는 소문자를 사용한다.
 2. 자원에 대한 행위는 HTTP Method로 표현하며 URI에 HTTP Method가 들어가면 안된다. 또한 CRUD 기능을 나타내는 것 역시 URI에 들어가서는 안된다.
  <pre>
-    GET /members/delete/1 (X)
-    DELETE /members/1 (O)
+    GET /web/members/delete/1 (X)
+    DELETE /web/members/1 (O)
  
-    GET /members/show/1 (X)
-    GET /members/1 (O)
+    GET /web/members/show/1 (X)
+    GET /web/members/1 (O)
  </pre>
 
 3. URI 마지막 문자로 슬래시(/)를 포함하지 않는다.
  <pre>
-  http://api.blockodyssey.com/members/123/ (X)
-  http://api.blockodyssey.com/members/123 (O)
+  http://api.blockodyssey.com/web/members/123/ (X)
+  http://api.blockodyssey.com/web/members/123 (O)
  </pre>
 
 4. 밑줄(\_)은 URI에 사용하지 않으며 필요한 경우 하이픈(-)을 사용한다.
  <pre>
-   http://api.blockodyssey.com/test_url (X)
-   http://api.blockodyssey.com/test-url (O)
+   http://api.blockodyssey.com/app/test_url (X)
+   http://api.blockodyssey.com/app/test-url (O)
  </pre>
 
 5. 앱에서 필요한 URI는 /app 밑에, 웹에서 필요한 URI는 /web 밑에 작성하도록 한다.
  <pre>
-   GET /user/123 (X)
-   GET /app/user/123 (O)
+   GET /users/123 (X)
+   GET /app/users/123 (O)
  </pre>
