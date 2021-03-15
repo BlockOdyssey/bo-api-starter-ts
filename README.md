@@ -192,8 +192,8 @@
 
 4. 밑줄(\_)은 URI에 사용하지 않으며 필요한 경우 하이픈(-)을 사용한다.
  <pre>
-   http://api.blockodyssey.com/app/test_url (X)
-   http://api.blockodyssey.com/app/test-url (O)
+   GET /app/test_url (X)
+   GET /app/test-url (O)
  </pre>
 
 5. 앱에서 필요한 URI는 /app 밑에, 웹에서 필요한 URI는 /web 밑에 작성하도록 한다.
