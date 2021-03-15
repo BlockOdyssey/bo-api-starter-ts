@@ -177,7 +177,7 @@
 1. 동사보다는 명사를, 대문자보다는 소문자를 사용한다.
 2. 자원에 대한 행위는 HTTP Method로 표현하며 URI에 HTTP Method가 들어가면 안된다. 또한 CRUD 기능을 나타내는 것 역시 URI에 들어가서는 안된다.
  <pre>
-    GET /web/members/delete/1 (X)
+    POST /web/members/delete/1 (X)
     DELETE /web/members/1 (O)
  
     GET /web/members/show/1 (X)
