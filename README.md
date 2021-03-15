@@ -7,13 +7,12 @@
 -   [Getting Started](#getting-started)
     -   [Project Installation](#project-installation)
     -   [Install Dependencies](#install-dependencies)
-        -   [Project Dependencies](#project-dependencies)
     -   [Project Environment Setup](#project-environment-setup)
     -   [Project Structure](#project-structure)
     -   [Project Run](#project-run)
 -   [Guidelines](#guidelines)
     -   [HTTP Status Codes](#http-status-codes)
-    -   [Files and Variables](#files-and-variables)
+    -   [Other Rules](#other-rules)
 
 ## Getting Started
 
@@ -154,4 +153,43 @@
   </code>
 </pre>
 
-### Files and Variables
+### Other Rules
+
+#### Files and Variables
+
+1. 모든 파일명과 변수명은 camelCase를 따르는 것을 원칙으로 한다.
+2. 모든 파일명과 변수명은 '동사+명사' 형태로 지어 어떠한 기능을 하는지 직관적으로 알 수 있도록 한다.
+
+#### API URI 설계
+
+<pre>
+  참고 : https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html
+</pre>
+
+1. 동사보다는 명사를, 대문자보다는 소문자를 사용한다.
+2. 자원에 대한 행위는 HTTP Method로 표현하며 URI에 HTTP Method가 들어가면 안된다. 또한 CRUD 기능을 나타내는 것 역시 URI에 들어가서는 안된다.
+ <pre>
+    GET /members/delete/1 (X)
+    DELETE /members/1 (O)
+ 
+    GET /members/show/1 (X)
+    GET /members/1 (O)
+ </pre>
+
+3. URI 마지막 문자로 슬래시(/)를 포함하지 않는다.
+ <pre>
+  http://api.blockodyssey.com/members/123/ (X)
+  http://api.blockodyssey.com/members/123 (O)
+ </pre>
+
+4. 밑줄(\_)은 URI에 사용하지 않으며 필요한 경우 하이픈(-)을 사용한다.
+ <pre>
+   http://api.blockodyssey.com/test_url (X)
+   http://api.blockodyssey.com/test-url (O)
+ </pre>
+
+5. 앱에서 필요한 URI는 /app 밑에, 웹에서 필요한 URI는 /web 밑에 작성하도록 한다.
+ <pre>
+   GET /user/123 (X)
+   GET /app/user/123 (O)
+ </pre>
