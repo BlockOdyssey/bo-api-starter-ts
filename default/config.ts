@@ -3,27 +3,27 @@ import * as aws from "aws-sdk";
 import * as mysql from "mysql";
 
 require("dotenv").config({
-  path: ((): string => {
-    // return `../.env`; 서버 경로
-    return `./.env`; // 로컬경로
-  })(),
+    path: ((): string => {
+        // return `../.env`; 서버 경로
+        return `./.env`; // 로컬경로
+    })(),
 });
 
 const {
-  NODE_ENV,
-  PORT,
-  TLSPORT,
-  ORIGIN,
-  S3_HOST,
-  S3_BUCKET,
-  S3_ACCESSKEYID,
-  S3_SECRETACCESSKEY,
-  MYSQL_HOST,
-  MYSQL_USER,
-  MYSQL_PASSPORT,
-  MYSQL_PORT,
-  MYSQL_DATABASE,
-  JWT_SECRET,
+    NODE_ENV,
+    PORT,
+    TLSPORT,
+    ORIGIN,
+    S3_HOST,
+    S3_BUCKET,
+    S3_ACCESSKEYID,
+    S3_SECRETACCESSKEY,
+    MYSQL_HOST,
+    MYSQL_USER,
+    MYSQL_PASSPORT,
+    MYSQL_PORT,
+    MYSQL_DATABASE,
+    JWT_SECRET,
 } = process.env;
 
 //환경
@@ -38,53 +38,53 @@ const jwtSecret: string = JWT_SECRET;
 const s3_host: string = S3_HOST;
 const s3_bucket: string = S3_BUCKET;
 aws.config.update({
-  accessKeyId: S3_ACCESSKEYID,
-  secretAccessKey: S3_SECRETACCESSKEY,
-  region: "ap-northeast-2",
+    accessKeyId: S3_ACCESSKEYID,
+    secretAccessKey: S3_SECRETACCESSKEY,
+    region: "ap-northeast-2",
 });
 const s3: aws.S3 = new aws.S3();
 
 //mysql
 const connection: Connection = mysql.createConnection({
-  host: MYSQL_HOST,
-  user: MYSQL_USER,
-  password: MYSQL_PASSPORT,
-  port: Number(MYSQL_PORT),
-  database: MYSQL_DATABASE,
+    host: MYSQL_HOST,
+    user: MYSQL_USER,
+    password: MYSQL_PASSPORT,
+    port: Number(MYSQL_PORT),
+    database: MYSQL_DATABASE,
 });
 
 connection.connect((err: mysql.MysqlError) => {
-  if (err) {
-    console.log(`Fail to connect MySQL database: ${err.code}`);
-    process.exit(0);
-  } else {
-    console.log("MySQL database connection success");
-  }
+    if (err) {
+        console.log(`Fail to connect MySQL database: ${err.code}`);
+        // process.exit(0);
+    } else {
+        console.log("MySQL database connection success");
+    }
 });
 
 const query = (sql: string, values?: any): Promise<unknown> =>
-  new Promise((resolve, reject) => {
-    console.log(sql);
-    connection.query(sql, values, (err: mysql.MysqlError, rows: any) => {
-      if (err) {
-        console.log(`Fail to query: ${err.code}`);
-        reject(err);
-      } else {
-        resolve(rows);
-      }
+    new Promise((resolve, reject) => {
+        console.log(sql);
+        connection.query(sql, values, (err: mysql.MysqlError, rows: any) => {
+            if (err) {
+                console.log(`Fail to query: ${err.code}`);
+                reject(err);
+            } else {
+                resolve(rows);
+            }
+        });
     });
-  });
 
 module.exports = {
-  s3,
-  s3_bucket,
-  s3_host,
-  port,
-  tlsPort,
-  isDev,
-  isProd,
-  connection,
-  query,
-  origin,
-  jwtSecret,
+    s3,
+    s3_bucket,
+    s3_host,
+    port,
+    tlsPort,
+    isDev,
+    isProd,
+    connection,
+    query,
+    origin,
+    jwtSecret,
 };

@@ -11,10 +11,20 @@ interface decodedData {
 router.post("/", (req: express.Request, res: express.Response) => {
     verifyToken(req, res, async (decoded: decodedData) => {
         const { email } = decoded;
-        await uploadFile.single("file");
-        res.status(201).send({
-            url: req.file.path,
-        });
+        try {
+            await uploadFile.single("file");
+            res.status(201).send({
+                status: "success",
+                dataSource: {
+                    url: req.file.path,
+                },
+            });
+        } catch (err) {
+            res.status(400).send({
+                status: "fail",
+                message: "파일 업로드를 실패하였습니다.",
+            });
+        }
     });
 });
 
