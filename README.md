@@ -39,7 +39,7 @@
 -   AWS S3 : [multer](https://github.com/expressjs/multer#readme), [multer-s3](https://github.com/badunk/multer-s3#readme)
 -   Environment Variables : [dotenv](https://github.com/motdotla/dotenv#readme)
 -   HTTP Request Logger : [morgan](https://github.com/expressjs/morgan#readme)
--   Development Only : [nodemon](https://nodemon.io/), [TypeScript](https://www.typescriptlang.org/)
+-   Development Only : [nodemon](https://nodemon.io/), [TypeScript](https://www.typescriptlang.org/), [ts-node](https://github.com/TypeStrong/ts-node)
 
 ### Project Environment Setup
 
@@ -52,6 +52,14 @@
      MYSQL_PASSPORT=example
      MYSQL_PORT=3306
      MYSQL_DATABASE=example
+   </code>
+ </pre>
+3. (선택 사항) nodemon을 사용하고자 하는 경우 package.json을 다음과 같이 수정해줍니다.
+ <pre>
+   <code>
+     "scripts": {
+       "start": "nodemon --watch '**/*.ts' --ignore '**/*.spec.ts' --exec 'ts-node' index.ts"
+     },
    </code>
  </pre>
 
