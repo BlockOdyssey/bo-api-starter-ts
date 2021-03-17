@@ -54,12 +54,19 @@
      MYSQL_DATABASE=example
    </code>
  </pre>
-3. (선택 사항) nodemon을 사용하고자 하는 경우 package.json을 다음과 같이 수정해줍니다.
+3. nodemon을 사용하고자 하는 경우 package.json을 다음과 같이 수정해줍니다.
  <pre>
    <code>
      "scripts": {
        "start": "nodemon --watch '**/*.ts' --ignore '**/*.spec.ts' --exec 'ts-node' index.ts"
      },
+   </code>
+ </pre>
+4. 토큰 인증이 필요한 URL의 경우 미들웨어(/middleware/app/index.ts 혹은 /middleware/web/index.ts)에서 추가하면 됩니다.
+ <pre>
+   <code>
+     // 필요한 경우 Array의 Element로 추가
+     const tokenCheckUrl: string[] = ["/upload", "/users"];
    </code>
  </pre>
 
@@ -76,30 +83,31 @@
             └── index.ts
         ├── common                  # 공통
             ├── uploadFile.ts         # S3 파일 업로드
-            └── verifyToken.ts        # jwt 토큰 검증
         └── web                     # WEB
             └── index.ts
     ├── query                     # SQL 쿼리
-        └── users.ts
+        └── users.ts                # 회원 관련 쿼리
     ├── routes                    # 라우팅 설정
         ├── app                     # APP
             ├── index.ts
-            ├── upload.ts
-            └── users.ts
+            ├── upload.ts             # 파일 업로드
+            └── users.ts              # 회원 관련 라우팅
         └── web                     # WEB
             ├── index.ts
-            ├── upload.ts
-            └── users.ts
+            ├── upload.ts             # 파일 업로드
+            └── users.ts              # 회원 관련 라우팅
     ├── service                   # 서비스 로직
-        ├── users
-            └── findUser.ts
+        ├── users                   # 회원 관련 서비스 로직
+            └── findUser.ts           # 회원 정보 가져오기
         └── index.ts
     ├── .env.example              # 환경변수 예시
     ├── config.ts                 # 공통 설정
     ├── index.ts                  # 서버 시작 파일
     ├── package-lock.json
     ├── package.json
-    └── tsconfig.json
+    ├── README.md
+    ├── statusMessages.ts         # HTTP 응답 메시지
+    └── tsconfig.json             # TypeScript 컴파일 환경 설정
   </code>
 </pre>
 
