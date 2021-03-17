@@ -20,7 +20,7 @@ router.get("/", async (req: express.Request, res: express.Response) => {
                 message: result,
             });
         } else {
-            res.status(409).json({
+            res.status(404).json({
                 result: "fail",
                 message: "존재하지 않는 회원입니다.",
             });
