@@ -1,26 +1,26 @@
 {
-  "name": "bo-api-starter-ts",
-  "version": "0.0.5",
-  "description": "블록오디세이에서 사용하는 api starter입니다.",
-  "keywords": [
-    "blockodyssey"
-  ],
-  "main": "index.js",
-  "bin": {
-    "bo-api-starter": "bin/index.js"
-  },
-  "scripts": {
-    "start": "node bin/index.js",
-    "bo-api-starter": "node bin/index.js"
-  },
-  "author": "blockodyssey",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/BlockOdyssey/bo-api-starter-ts.git"
-  },
-  "dependencies": {
-    "edit-json-file": "^1.6.0",
-    "ncp": "^2.0.0"
-  }
+    "name": "bo-api-starter-ts",
+    "version": "0.0.5",
+    "description": "블록오디세이에서 사용하는 api starter입니다.",
+    "keywords": [
+        "blockodyssey"
+    ],
+    "main": "index.js",
+    "bin": {
+        "bo-api-starter-ts": "bin/index.js"
+    },
+    "scripts": {
+        "start": "node bin/index.js",
+        "bo-api-starter-ts": "node bin/index.js"
+    },
+    "author": "blockodyssey",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BlockOdyssey/bo-api-starter-ts.git"
+    },
+    "dependencies": {
+        "edit-json-file": "^1.6.0",
+        "ncp": "^2.0.0"
+    }
 }
