@@ -1,8 +1,18 @@
 import * as express from "express";
 const app = express();
+const http = require("http");
+const https = require("https");
+const fs = require("fs");
+const path = require("path");
 const morgan = require("morgan");
 const config = require("./config");
-const { port = 3000 } = config;
+
+const { port = 3000, tlsport = 3001 } = config;
+
+const options = {
+    // key: fs.readFileSync(path.resolve(__dirname, "./certkey/key.key")),
+    // cert: fs.readFileSync(path.resolve(__dirname, "./certkey/cert.crt")),
+};
 
 const webRoutes = require("./routes/web");
 const appRoutes = require("./routes/app");
@@ -18,9 +28,13 @@ app.use("/web", webMw, webRoutes);
 app.use("/app", appMw, appRoutes);
 
 app.get("/", (req: express.Request, res: express.Response) => {
-  res.send("Hello World!");
+    res.send("Hello World!");
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}!`);
+https.createServer(options, app).listen(tlsport, () => {
+    console.log(`Server is running at port ${tlsport}`);
+});
+
+http.createServer(app).listen(port, () => {
+    console.log(`Server is running at port ${port}`);
 });
