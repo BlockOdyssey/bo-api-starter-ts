@@ -1,3 +1,5 @@
+import * as express from "express";
+
 const statusMessages = {
     ok: {
         result: "success",
