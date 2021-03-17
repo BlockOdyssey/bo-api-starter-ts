@@ -1,7 +1,10 @@
 import * as express from "express";
+import * as jwt from "jsonwebtoken";
+const config = require("../../config");
+const statusMessages = require("../../statusMessages");
+const secret = config.jwtSecret;
 
 // middle-ware settings
-
 const appMw = (
     req: express.Request,
     res: express.Response,
@@ -19,7 +22,15 @@ const appMw = (
 
     console.log("app middleware ---");
 
-    next();
+    const token = req.get("token");
+    jwt.verify(token, secret, (err: jwt.VerifyErrors, decoded: object) => {
+        if (err) {
+            res.status(401).send(statusMessages.unauthorized);
+        } else {
+            res.locals.decoded = decoded;
+            next();
+        }
+    });
 };
 
 module.exports = appMw;
