@@ -14,7 +14,7 @@ router.post("/", async (req: express.Request, res: express.Response) => {
             },
         });
     } catch (err) {
-        res.status(400).send(statusMessages.badRequest);
+        res.status(500).send(statusMessages.internalError);
     }
 });
 
