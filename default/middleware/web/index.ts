@@ -4,6 +4,11 @@ const config = require("../../config");
 const statusMessages = require("../../statusMessages");
 const secret = config.jwtSecret;
 
+interface decodedToken {
+    user_idx: number;
+    iat: number;
+}
+
 // middle-ware settings
 const webMw = (
     req: express.Request,
@@ -23,14 +28,44 @@ const webMw = (
     console.log("web middleware ---");
 
     const token = req.get("token");
-    jwt.verify(token, secret, (err: jwt.VerifyErrors, decoded: object) => {
-        if (err) {
-            res.status(401).send(statusMessages.unauthorized);
-        } else {
-            res.locals.decoded = decoded;
-            next();
+    jwt.verify(
+        token,
+        secret,
+        (err: jwt.VerifyErrors, decoded: decodedToken) => {
+            if (
+                err ||
+                !decoded.user_idx ||
+                decoded.user_idx === null ||
+                isNaN(decoded.user_idx)
+            ) {
+                res.status(401).send(statusMessages.unauthorized);
+            } else {
+                if (req.body) {
+                    for (let i in req.body) {
+                        if (
+                            req.body[i] === undefined ||
+                            req.body[i] === null ||
+                            req.body[i] === ""
+                        ) {
+                            res.status(400).send(statusMessages.badRequest);
+                        }
+                    }
+                } else if (req.query) {
+                    for (let i in req.query) {
+                        if (
+                            req.query[i] === undefined ||
+                            req.query[i] === null ||
+                            req.query[i] === ""
+                        ) {
+                            res.status(400).send(statusMessages.badRequest);
+                        }
+                    }
+                }
+                res.locals.decoded = decoded;
+                next();
+            }
         }
-    });
+    );
 };
 
 module.exports = webMw;
