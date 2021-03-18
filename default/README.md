@@ -81,8 +81,6 @@
     ├── middleware                # 미들웨어 설정
         ├── app                     # APP
             └── index.ts
-        ├── common                  # 공통
-            ├── uploadFile.ts         # S3 파일 업로드
         └── web                     # WEB
             └── index.ts
     ├── query                     # SQL 쿼리
@@ -101,6 +99,7 @@
             └── findUser.ts           # 회원 정보 가져오기
         └── index.ts
     ├── .env.example              # 환경변수 예시
+    ├── common.ts                 # 공용 함수
     ├── config.ts                 # 공통 설정
     ├── index.ts                  # 서버 시작 파일
     ├── package-lock.json
