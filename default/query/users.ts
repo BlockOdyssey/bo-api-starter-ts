@@ -5,7 +5,7 @@ interface user {
 }
 
 exports.find = (obj: user) => {
-    let sql = `
+    const sql = `
         SELECT
             *
         FROM
@@ -13,6 +13,5 @@ exports.find = (obj: user) => {
         WHERE
             user_idx = '${obj.user_idx}';
     `;
-    console.log(sql);
     return query(sql);
 };

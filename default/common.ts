@@ -22,7 +22,7 @@ const uploadFile: multer.Multer = multer({
     }),
 });
 
-// 엑셀 파일 생성
+// 엑셀 파일 생성 (파일 외부 제공용)
 const makeExcel = async (
     data: Array<object>,
     sheetName: string
