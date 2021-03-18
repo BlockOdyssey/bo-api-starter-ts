@@ -23,7 +23,7 @@ const uploadFile: multer.Multer = multer({
 });
 
 // 엑셀 파일 생성
-const makeExcel = async (data: object, sheetName: string) => {
+const makeExcel = async (data: Array<object>, sheetName: string) => {
     const ws = xlsx.utils.json_to_sheet(data);
     const wb = xlsx.utils.book_new();
     xlsx.utils.book_append_sheet(wb, ws, sheetName);
