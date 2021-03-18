@@ -11,6 +11,6 @@
     "middleware/**/*",
     "query/**/*",
     "config.ts",
-    "index.ts"
-  ]
+    "index.ts",
+    "common.ts"  ]
 }

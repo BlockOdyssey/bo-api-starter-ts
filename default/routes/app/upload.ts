@@ -1,6 +1,6 @@
 import * as express from "express";
 const statusMessages = require("../../statusMessages");
-const uploadFile = require("../../middleware/common/uploadFile");
+const { uploadFile } = require("../../common");
 const router = express.Router();
 
 router.post(
