@@ -7,7 +7,7 @@ const path = require("path");
 const morgan = require("morgan");
 const config = require("./config");
 
-const { port = 3000, tlsport = 3001 } = config;
+const { port = 3000, tlsPort = 3001 } = config;
 
 const options = {
     // key: fs.readFileSync(path.resolve(__dirname, "./certkey/key.key")),
@@ -31,8 +31,8 @@ app.get("/", (req: express.Request, res: express.Response) => {
     res.send("Hello World!");
 });
 
-https.createServer(options, app).listen(tlsport, () => {
-    console.log(`Server is running at port ${tlsport}`);
+https.createServer(options, app).listen(tlsPort, () => {
+    console.log(`Server is running at port ${tlsPort}`);
 });
 
 http.createServer(app).listen(port, () => {
