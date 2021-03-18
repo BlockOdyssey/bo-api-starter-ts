@@ -23,7 +23,10 @@ const uploadFile: multer.Multer = multer({
 });
 
 // 엑셀 파일 생성
-const makeExcel = async (data: Array<object>, sheetName: string) => {
+const makeExcel = async (
+    data: Array<object>,
+    sheetName: string
+): Promise<any> => {
     const ws = xlsx.utils.json_to_sheet(data);
     const wb = xlsx.utils.book_new();
     xlsx.utils.book_append_sheet(wb, ws, sheetName);
@@ -65,9 +68,27 @@ const removeComma = (data: string): string => {
     }
 };
 
+// 빈 데이터 확인
+const isEmpty = (value: any): boolean => {
+    if (
+        value === "" ||
+        value === null ||
+        value === undefined ||
+        value === "INVALID" ||
+        (value !== null &&
+            typeof value === "object" &&
+            !Object.keys(value).length)
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
 module.exports = {
     uploadFile,
     makeExcel,
     validateRegExp,
     removeComma,
+    isEmpty,
 };

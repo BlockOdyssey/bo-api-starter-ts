@@ -3,6 +3,7 @@ import * as jwt from "jsonwebtoken";
 const config = require("../../config");
 const statusMessages = require("../../statusMessages");
 const secret = config.jwtSecret;
+const { isEmpty } = require("../../common");
 
 interface decodedToken {
     user_idx: number;
@@ -32,21 +33,13 @@ const appMw = (
     const checkParams = () => {
         if (req.body) {
             for (let i in req.body) {
-                if (
-                    req.body[i] === undefined ||
-                    req.body[i] === null ||
-                    req.body[i] === ""
-                ) {
+                if (isEmpty(req.body[i])) {
                     res.status(400).send(statusMessages.badRequest);
                 }
             }
         } else if (req.query) {
             for (let i in req.query) {
-                if (
-                    req.query[i] === undefined ||
-                    req.query[i] === null ||
-                    req.query[i] === ""
-                ) {
+                if (isEmpty(req.query[i])) {
                     res.status(400).send(statusMessages.badRequest);
                 }
             }
@@ -62,8 +55,7 @@ const appMw = (
                 (err: jwt.VerifyErrors, decoded: decodedToken) => {
                     if (
                         err ||
-                        !decoded.user_idx ||
-                        decoded.user_idx === null ||
+                        isEmpty(decoded.user_idx) ||
                         isNaN(decoded.user_idx)
                     ) {
                         res.status(401).send(statusMessages.unauthorized);
