@@ -44,8 +44,18 @@ const validateEmail = (email: string): boolean => {
     }
 };
 
+// 마지막 콤마 제거
+const removeComma = (data: string): string => {
+    if (data.endsWith(",")) {
+        return data.slice(0, -1);
+    } else {
+        return data;
+    }
+};
+
 module.exports = {
     uploadFile,
     makeExcel,
     validateEmail,
+    removeComma,
 };
