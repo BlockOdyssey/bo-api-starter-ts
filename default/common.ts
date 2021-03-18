@@ -5,9 +5,9 @@ import * as path from "path";
 const xlsx = require("xlsx");
 
 // S3 파일 업로드 (middleware로 붙여서 사용)
-// 파일 하나만 업로드 할 경우 : uploadFile.single(필드명)
-// 여러 개의 파일을 업로드 할 경우 : uploadFile.array(필드명, 파일 갯수)
-const uploadFile = multer({
+// 파일 하나만 업로드 할 경우 : uploadFile.single(필드명) -> 업로드 된 파일 정보는 req.file에 있음. 파일 URL은 req.file.path로 가져올 것
+// 여러 개의 파일을 업로드 할 경우 : uploadFile.array(필드명, 최대 파일 갯수) -> 업로드 된 파일 정보는 req.files에 있음
+const uploadFile: multer.Multer = multer({
     storage: multerS3({
         s3: s3,
         bucket: s3_bucket,
@@ -34,7 +34,18 @@ const makeExcel = async (data: object, sheetName: string) => {
     return wbOut;
 };
 
+// 이메일 주소 검증
+const validateEmail = (email: string): boolean => {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (re.test(String(email).toLowerCase())) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
 module.exports = {
     uploadFile,
     makeExcel,
+    validateEmail,
 };
