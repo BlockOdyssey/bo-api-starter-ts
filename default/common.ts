@@ -34,11 +34,23 @@ const makeExcel = async (data: Array<object>, sheetName: string) => {
     return wbOut;
 };
 
-// 이메일 주소 검증
-const validateEmail = (email: string): boolean => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(String(email).toLowerCase())) {
-        return true;
+// 정규식 검증
+const validateRegExp = (value: string, type: string): boolean => {
+    const userIdCheck = RegExp(/^[A-Za-z0-9_\-]{5,20}$/);
+    const passwordCheck = RegExp(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^*()\-_=+\\\|\[\]{};:\'",.<>\/?]).{8,16}$/
+    );
+    const emailCheck = RegExp(/^[A-Za-z0-9_.-]+@[A-Za-z0-9-]+\.[A-Za-z0-9-]+/);
+    const phoneNumberCheck = RegExp(/^01[0179][0-9]{7,8}$/);
+
+    if (type === "userId") {
+        return userIdCheck.test(value);
+    } else if (type === "password") {
+        return passwordCheck.test(value);
+    } else if (type === "email") {
+        return emailCheck.test(value);
+    } else if (type === "phone") {
+        return phoneNumberCheck.test(value);
     } else {
         return false;
     }
@@ -56,6 +68,6 @@ const removeComma = (data: string): string => {
 module.exports = {
     uploadFile,
     makeExcel,
-    validateEmail,
+    validateRegExp,
     removeComma,
 };
