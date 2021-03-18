@@ -5,8 +5,8 @@ const starter = require("../lib/starter");
 const destination = getDest(process.argv[2]);
 
 function getDest(destFolder) {
-  destFolder = destFolder || "api-starter";
-  return path.join(process.cwd(), destFolder);
+    destFolder = destFolder || "api-starter-ts";
+    return path.join(process.cwd(), destFolder);
 }
 
 starter(destination);
