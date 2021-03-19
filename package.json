@@ -13,7 +13,11 @@
         "start": "node bin/index.js",
         "bo-api-starter-ts": "node bin/index.js"
     },
-    "author": "blockodyssey",
+    "author": {
+        "name": "blockodyssey",
+        "email": "dev@blockodyssey.io",
+        "url": "http://www.blockodyssey.io/"
+    },
     "license": "ISC",
     "repository": {
         "type": "git",
