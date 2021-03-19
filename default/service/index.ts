@@ -1,8 +1,8 @@
-const { findUser } = require("./users/findUser");
+const { getUser } = require("./users/getUser");
 
 const services = {
     users: {
-        findUser,
+        getUser,
     },
 };
 

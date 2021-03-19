@@ -96,7 +96,7 @@
             └── users.ts              # 회원 관련 라우팅
     ├── service                   # 서비스 로직
         ├── users                   # 회원 관련 서비스 로직
-            └── findUser.ts           # 회원 정보 가져오기
+            └── getUser.ts            # 회원 정보 가져오기
         └── index.ts
     ├── .env.example              # 환경변수 예시
     ├── common.ts                 # 공용 함수
@@ -195,7 +195,8 @@
 #### Files and Variables
 
 1. 모든 파일명과 변수명은 camelCase를 따르는 것을 원칙으로 한다.
-2. 모든 파일명과 변수명은 '동사+명사' 형태로 지어 어떠한 기능을 하는지 직관적으로 알 수 있도록 한다.
+2. 서비스의 파일명과 변수명은 '동사+명사' 형태로 지어 어떠한 기능을 하는지 직관적으로 알 수 있도록 한다.
+3. 서비스의 파일은 총 4가지만 허용한다. (insertUser, getUser, updateUser, deleteUser)
 
 #### API URI 설계
 
