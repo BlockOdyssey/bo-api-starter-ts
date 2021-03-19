@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/", async (req: express.Request, res: express.Response) => {
     const { user_idx } = res.locals.decoded;
     try {
-        const result = await users.getUser({ user_idx });
+        const result = await users.getUsers({ user_idx });
         if (result) {
             console.log(result);
             res.status(200).send({ ...statusMessages.ok, dataSource: result });

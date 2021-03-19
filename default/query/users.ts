@@ -4,7 +4,7 @@ interface user {
     user_idx: number;
 }
 
-exports.find = (obj: user) => {
+exports.get = (obj: user) => {
     const sql = `
         SELECT
             *

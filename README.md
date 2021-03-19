@@ -96,7 +96,7 @@
             └── users.ts              # 회원 관련 라우팅
     ├── service                   # 서비스 로직
         ├── users                   # 회원 관련 서비스 로직
-            └── getUser.ts            # 회원 정보 가져오기
+            └── getUsers.ts            # 회원 정보 가져오기
         └── index.ts
     ├── .env.example              # 환경변수 예시
     ├── common.ts                 # 공용 함수

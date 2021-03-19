@@ -1,8 +1,8 @@
-const { getUser } = require("./users/getUser");
+const { getUsers } = require("./users/getUsers");
 
 const services = {
     users: {
-        getUser,
+        getUsers,
     },
 };
 
